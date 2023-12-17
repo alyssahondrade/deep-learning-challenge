@@ -9,13 +9,9 @@
 
 
 ## Goal
-Explain the purpose of the analysis
-
-
-The purpose of the analysis is...
+The purpose of the analysis is to develop a Deep Learning Model that can predict whether applicants will be successful if funded by the nonprofit foundation, Alphabet Soup.
 
 ## Questions
-Answer all 6 questions in the results section
 
 ### Data Preprocessing
 1. What variable(s) are the target(s) for your model?
@@ -83,7 +79,11 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
 - Hyperparameter Tuning:
     - Changed the number of epochs, to as low as `20` up to `200`.
     - Changed the kinds of activation functions. As the number of activation functions made available to the hidden layers is increased, the number of tuning trials also increased. Hence, there needed to be a tradeoff.
+        - Avoided `linear` as did not want to introduce linearity to the model.
+        - Avoided `sigmoid` in the hidden layers, as it would quash the value.
     - Changed the maximum number of neurons. Ultimately settled with a rule of thumb: "The number of hidden neurons should be less than twice the size of the input layer."
+
+- Regularization: Experimented with L1 (Lasso) and L2 (Ridge) regularizations. L1 performed slightly better than L2.
 
 - Other Pre-Processing (iterations not saved):
     - Experimented with the number of unique values prior to encoding. Maintained a maximum of `6` unique values, trialling values to as low as `6`. Runs were also conducted with different values for different columns (i.e. `APPLICATION_TYPE` with `10` and `CLASSIFICATION` with `8`). No improvements in performance was observed, although it was noted the performance decreases as more columns are removed.
