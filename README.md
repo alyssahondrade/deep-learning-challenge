@@ -1,5 +1,48 @@
 # deep-learning-challenge
-Module 21 Challenge
+Module 21 Challenge - UWA/edX Data Analytics Bootcamp
+
+Github repository at: [https://github.com/alyssahondrade/deep-learning-challenge.git](https://github.com/alyssahondrade/deep-learning-challenge.git)
+
+## Table of Contents
+1. [Introduction]()
+    1. [Goal]()
+    2. [Repository Structure]()
+2. [Approach]()
+3. [Analysis]()
+4. [References]()
+
+## Introduction
+
+### Goal
+The purpose of the analysis is to develop a Deep Learning Model that can predict whether applicants will be successful if funded by the nonprofit foundation, Alphabet Soup.
+
+### Repository Structure
+The root directory contains:
+- `AlphabetSoupCharity.ipynb`, the notebook containing the initial run.
+- `AlphabetSoupCharity_Optimisation.ipynb`, the notebook containing the optimised model.
+- `helper_functions.ipynb`, the helper functions used in the analysis.
+- `Analysis.md`, the report about the process and model.
+
+The following subdirectories:
+- `images`, contains all images derived from the analysis.
+- `iterations`, contains all the notebooks on model iterations.
+- `model`, contains the HDF5 initial and final model files.
+- `model/iterations`, contains the HDF5 iteration files.
+- `untitled_project` contains the trials used in the hyperparameter tuning.
+
+### Dataset
+The dataset used in this analysis is sourced from: [https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads](https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads)
+
+## Approach
+1. The initial model was run, as per the notebook instructions.
+2. Data preprocessing and feature engineering was explored.
+3. Functions were created to simplify the process and minimise repetition.
+4. Once the feature engineering phase was exhausted, hyperparameter tuning was introduced.
+5. Conducted more optimisation tests, such as dropout and regularization.
+6. Created the iteration notebooks in the logical way, to demonstrate thought process concisely.
+
+## Analysis
+The complete analysis is available at: [https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md)
 
 ## References
 - [1] How do determine the number of layers and neurons in the hidden layer> [https://medium.com/geekculture/introduction-to-neural-network-2f8b8221fbd3](https://medium.com/geekculture/introduction-to-neural-network-2f8b8221fbd3)
