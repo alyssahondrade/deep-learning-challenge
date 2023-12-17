@@ -43,7 +43,7 @@ The engineered features are:
 - `EIN` is neither a target nor feature, as it acts as a primary key for the dataset.
 
 ### Compiling, Training, and Evaluating the Model
-1. How many neurons, layers, and activation functions did you select for your neural network model, and why?
+__1. How many neurons, layers, and activation functions did you select for your neural network model, and why?__
 
 The number of neurons, layers, and activation functions were derived using the hyperparameter tuner.
 
@@ -53,11 +53,23 @@ The number of neurons, layers, and activation functions were derived using the h
 |Hidden Layer 2|61|relu|
 |Output Layer|1|sigmoid|
 
-2. Were you able to achieve the target model performance?
+- The maximum number of neurons per layer was based on a rule of thumb, set to: `number_input_features * 2 - 1`
+- The options for the activation function for the hidden layers were:
+    - `relu`
+    - `leaky_relu`
+    - `tanh`
+    - `elu`
+    - `selu`
+    - `exponential`
+    - `softmax`
+    - `softplus`
+- The output layer used a `sigmoid` activation with `1` neuron as this is a binary classification problem.
+
+__2. Were you able to achieve the target model performance?__
 
 The model was able to achieve `75.7%`, slightly above the required `75%`.
 
-3. What steps did you take in your attempts to increase model performance?
+__3. What steps did you take in your attempts to increase model performance?__
 > For reference, the baseline accuracy is `72.8%`.
 
 - Data cleaning:
@@ -85,21 +97,26 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
 
 - Regularization:
     - Experimented with L1 (Lasso) and L2 (Ridge) regularizations.
-    - L1 performed slightly better than L2.
+    - L1 performed slightly better than L2, achieving the final `75.7%` compared to `74.8%`.
 
 - Other Pre-Processing (iterations not saved):
-    - Experimented with the number of unique values prior to encoding. Maintained a maximum of `6` unique values, trialling values to as low as `6`. Runs were also conducted with different values for different columns (i.e. `APPLICATION_TYPE` with `10` and `CLASSIFICATION` with `8`). No improvements in performance was observed, although it was noted the performance decreases as more columns are removed.
+    - Experimented with the number of unique values prior to encoding.
+        - Maintained a maximum of `10` unique values, trialling values to as low as `6`.
+        - Runs were also conducted with different values for different columns (i.e. `APPLICATION_TYPE` with `10` and `CLASSIFICATION` with `8`).
+        - No improvements in performance was observed, although it was noted the performance decreases as more columns are removed.
     - Experimented with adding `EIN` back to the feature array, however no change in accuracy. This was removed again since there's no logical reason to use it as a feature.
 
 
 ## Summary
-Format images in the report so that they display correction
-Summarise the overall results of your model
+The initial model achieved an accuracy of `72.8%`, with the final model achieving an accuracy of `75.7%`. This is an improvement of `2.9%`, which is significant as the model struggled to achieve greater than `74%` on most runs, even after feature engineering and hyperparameter tuning. Although this is reasonable performance, it would be interesting to explore other models to achieve greater accuracy.
 
-The initial model achieved an accuracy of `72.8%`, with the final model achieving an accuracy of `75.7%`.
 |![initial_run_accuracy](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_run_accuracy.png)|![initial_model_archi](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_model_architecture.png)|
 |:---:|:---:|
-|Initial Run|Initial Model Architecture| 
+|Initial Run|Initial Model Architecture|
+
+|![final_run_accuracy](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/final_run_accuracy.png)|![final_model_archi](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/final_model_architecture.png)|
+|:---:|:---:|
+|Final Run|Final Model Architecture|
 
 ## Alternative Solutions
 I would be interested to use ensemble learning to solve the same problem. My initial thought would be to use a Gradient Boosted Tree, given the small number of features available, however, I would need to be careful with overfitting. Otherwise, a Random Forest could also be used, applicable for smaller datasets but more robustness to overfitting. Regardless, the machine learning pipeline would still be applicable: data preprocessing, feature engineering, data splitting, model training, tuning, and evaluation, as demonstrated in the analysis.
