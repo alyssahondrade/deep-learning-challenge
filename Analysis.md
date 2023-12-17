@@ -20,18 +20,50 @@ Answer all 6 questions in the results section
 ### Data Preprocessing
 1. What variable(s) are the target(s) for your model?
 
+The target variable for the model is: `IS_SUCCESSFUL`.
+
 2. What variable(s) are the features for your model?
 
-3. What variable(s) should be removed from the input data because they are neither targets nor features?
+The features from the original dataset are:
+- `NAME`, retained as it was observed there were multiple applications per charity.
+- `APPLICATION_TYPE`
+- `AFFILIATION`
+- `CLASSIFICATION`
+- `USE_CASE`
+- `ORGANIZATION`
+- `STATUS`
+- `INCOME_AMT`
+- `SPECIAL_CONSIDERATIONS`
+- `ASK_AMT`
 
+The engineered features are:
+- `ORDINAL_INCOME_AMT`, with the `INCOME_AMT` ordinally encoded to account for the missing category: `500000-1M`.
+- `LOWER_INCOME`, derived from `INCOME_AMT`.
+- `UPPER_INCOME`, derived from `INCOME_AMT`.
+- `AFFILIATION_ORGANIZATION`, derived from combining the two columns.
+- `AFFILIATION_USECASE`, derived from combining the two columns.
+
+3. What variable(s) should be removed from the input data because they are neither targets nor features?
+- `EIN` is neither a target nor feature, as it acts as a primary key for the dataset.
 
 ### Compiling, Training, and Evaluating the Model
 1. How many neurons, layers, and activation functions did you select for your neural network model, and why?
 
+The number of neurons, layers, and activation functions were derived using the hyperparameter tuner.
+
+|Layer|Neurons|Activation Function|
+|:---:|:---:|:---:|
+|Hidden Layer 1|131|selu|
+|Hidden Layer 2|61|relu|
+|Output Layer|1|sigmoid|
+
 2. Were you able to achieve the target model performance?
 
+The model was able to achieve `75.7%`, slightly above the required `75%`.
+
 3. What steps did you take in your attempts to increase model performance?
-- For reference, the baseline accuracy is `72.8%`.
+> For reference, the baseline accuracy is `72.8%`.
+
 - Data cleaning:
     - (Iteration 1) Converted the `SPECIAL_CONSIDERATIONS` column to binary integers (`0`/`1`), instead of binary strings (`N`/`Y`).
     - (Iteration 2) Accounted for missing category in the `INCOME_AMT` column.
@@ -39,19 +71,24 @@ Answer all 6 questions in the results section
         - (Iteration 2b) Dropping the `INCOME_AMT` column results in return to the baseline accuracy.
         - (Iteration 2c) Creating `LOWER_INCOME` and `UPPER_INCOME` columns results in no change in accuracy, with a caveat of creating an "upper limit" for `50M+` as `100M`.
         - (Iteration 2d) Take the average of the `LOWER_INCOME` and `UPPER_INCOME` columns to eliminate the pseudo upper limit created for `50M+`. Without dropping columns, the performance drops by 2%. However, dropping these intermediary columns (as well as `INCOME_AMT`) results in a return to the baseline accuracy.
+
+- Feature Engineering:
     - (Iteration 3) Created a new feature which compares the ask amount to the average income.
         - (Iteration 3a) Initially, there was a reduction in performance, however experimented with comparing against `LOWER_INCOME` and returning the previously dropped `LOWER_INCOME` and `INCOME_AMT` columns, which resulted in a return to baseline accuracy. It seemed logical to only drop the `UPPER_INCOME` column, as there was synthetic data added to that column.
         - (Iteration 3b) Experimented with retaining the `UPPER_INCOME` column as well, which resulted in only a slight decrease in accuracy. Will retain the column as it was used to calculate the `AVG_INCOME` anyway.
     - (Iteration 4) Created new column by combining `AFFILIATION` with `ORGANIZATION`. This resulted in 73.6% accuracy, still close to the baseline but highest result so far.
     - (Iteration 5) Created another column by combining `AFFILIATION` with `USE_CASE`.
+    - (Iteration 6) Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding. This resulted in the model achieving 75% accuracy.
 
+- Hyperparameter Tuning:
+    - Changed the number of epochs, to as low as `20` up to `200`.
+    - Changed the kinds of activation functions. As the number of activation functions made available to the hidden layers is increased, the number of tuning trials also increased. Hence, there needed to be a tradeoff.
+    - Changed the maximum number of neurons. Ultimately settled with a rule of thumb: "The number of hidden neurons should be less than twice the size of the input layer."
 
+- Other Pre-Processing (iterations not saved):
+    - Experimented with the number of unique values prior to encoding. Maintained a maximum of `6` unique values, trialling values to as low as `6`. Runs were also conducted with different values for different columns (i.e. `APPLICATION_TYPE` with `10` and `CLASSIFICATION` with `8`). No improvements in performance was observed, although it was noted the performance decreases as more columns are removed.
+    - Experimented with adding `EIN` back to the feature array, however no change in accuracy. This was removed again since there's no logical reason to use it as a feature.
 
-- Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding.
-
-__STEPS THAT DID NOT WORK__
-- Added `EIN` back to the feature array. No change in accuracy. Removed it again since no logical reason to use it as a feature.
-  
 
 ## Summary
 Format images in the report so that they display correction
