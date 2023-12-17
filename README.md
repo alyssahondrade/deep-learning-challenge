@@ -4,12 +4,13 @@ Module 21 Challenge - UWA/edX Data Analytics Bootcamp
 Github repository at: [https://github.com/alyssahondrade/deep-learning-challenge.git](https://github.com/alyssahondrade/deep-learning-challenge.git)
 
 ## Table of Contents
-1. [Introduction]()
-    1. [Goal]()
-    2. [Repository Structure]()
-2. [Approach]()
-3. [Analysis]()
-4. [References]()
+1. [Introduction](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#introduction)
+    1. [Goal](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#goal)
+    2. [Repository Structure](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#repository-structure)
+    3. [Dataset](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#dataset)
+2. [Approach](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#approach)
+3. [Analysis](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#analysis)
+4. [References](https://github.com/alyssahondrade/deep-learning-challenge/tree/main#references)
 
 ## Introduction
 
