@@ -1,15 +1,17 @@
 # Alphabet Soup Analysis
 
 ## Table of Contents
-1. [Goal]()
-2. [Questions]()
-    1. [Data Preprocessing]()
-    2. [Compiling, Training, and Evaluating the Model]()
-3. [Summary]()
-4. [Alternative Solutions]()
+1. [Goal](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#goal)
+2. [Questions](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#questions)
+    1. [Data Preprocessing](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#data-preprocessing)
+    2. [Compiling, Training, and Evaluating the Model](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#compiling-training-and-evaluating-the-model)
+3. [Summary](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#summary)
+4. [Alternative Solutions](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/Analysis.md#alternative-solutions)
+
 
 ## Goal
 The purpose of the analysis is to develop a Deep Learning Model that can predict whether applicants will be successful if funded by the nonprofit foundation, Alphabet Soup.
+
 
 ## Questions
 
@@ -41,6 +43,7 @@ The engineered features are:
 
 3. What variable(s) should be removed from the input data because they are neither targets nor features?
 - `EIN` is neither a target nor feature, as it acts as a primary key for the dataset.
+
 
 ### Compiling, Training, and Evaluating the Model
 __1. How many neurons, layers, and activation functions did you select for your neural network model, and why?__
@@ -118,5 +121,6 @@ The initial model achieved an accuracy of `72.8%`, with the final model achievin
 |:---:|:---:|
 |Final Run|Final Model Architecture|
 
+
 ## Alternative Solutions
-I would be interested to use ensemble learning to solve the same problem. My initial thought would be to use a Gradient Boosted Tree, given the small number of features available, however, I would need to be careful with overfitting. Otherwise, a Random Forest could also be used, applicable for smaller datasets but more robustness to overfitting. Regardless, the machine learning pipeline would still be applicable: data preprocessing, feature engineering, data splitting, model training, tuning, and evaluation, as demonstrated in the analysis.
+I would be interested to use ensemble learning to solve the same problem. My initial thought would be to use a Gradient Boosted Tree, given the small number of features available, however, I would need to be careful with overfitting. Otherwise, a Random Forest could also be used, applicable for smaller datasets with greater robustness to overfitting. Regardless, the machine learning pipeline would still be applicable: data preprocessing, feature engineering, data splitting, model training, tuning, and evaluation, as demonstrated in the analysis.
