@@ -15,3 +15,5 @@ Module 21 Challenge
 - [6] Regularizer [https://www.tensorflow.org/api_docs/python/tf/keras/regularizers/Regularizer](https://www.tensorflow.org/api_docs/python/tf/keras/regularizers/Regularizer)
 
 - [7] L1 and L2 Regularization Explained [https://spotintelligence.com/2023/05/26/l1-l2-regularization/](https://spotintelligence.com/2023/05/26/l1-l2-regularization/)
+
+- [8] An Introduction to Gradient Boosting Decision Trees [https://www.machinelearningplus.com/machine-learning/an-introduction-to-gradient-boosting-decision-trees/](https://www.machinelearningplus.com/machine-learning/an-introduction-to-gradient-boosting-decision-trees/)
