@@ -61,20 +61,20 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
 > For reference, the baseline accuracy is `72.8%`.
 
 - Data cleaning:
-    - (Iteration 1) Converted the `SPECIAL_CONSIDERATIONS` column to binary integers (`0`/`1`), instead of binary strings (`N`/`Y`).
-    - (Iteration 2) Accounted for missing category in the `INCOME_AMT` column.
-        - (Iteration 2a) Converting the `INCOME_AMT` column to ordinal encoding and retaining the original column results in a reduction of performance.
-        - (Iteration 2b) Dropping the `INCOME_AMT` column results in return to the baseline accuracy.
-        - (Iteration 2c) Creating `LOWER_INCOME` and `UPPER_INCOME` columns results in no change in accuracy, with a caveat of creating an "upper limit" for `50M+` as `100M`.
-        - (Iteration 2d) Take the average of the `LOWER_INCOME` and `UPPER_INCOME` columns to eliminate the pseudo upper limit created for `50M+`. Without dropping columns, the performance drops by 2%. However, dropping these intermediary columns (as well as `INCOME_AMT`) results in a return to the baseline accuracy.
+    - __Iteration 1__: Converted the `SPECIAL_CONSIDERATIONS` column to binary integers (`0`/`1`), instead of binary strings (`N`/`Y`).
+    - __Iteration 2__: Accounted for missing category in the `INCOME_AMT` column.
+        - __Iteration 2a__: Converting the `INCOME_AMT` column to ordinal encoding and retaining the original column results in a reduction of performance.
+        - __Iteration 2b__: Dropping the `INCOME_AMT` column results in return to the baseline accuracy.
+        - __Iteration 2c__: Creating `LOWER_INCOME` and `UPPER_INCOME` columns results in no change in accuracy, with a caveat of creating an "upper limit" for `50M+` as `100M`.
+        - __Iteration 2d__: Take the average of the `LOWER_INCOME` and `UPPER_INCOME` columns to eliminate the pseudo upper limit created for `50M+`. Without dropping columns, the performance drops by 2%. However, dropping these intermediary columns (as well as `INCOME_AMT`) results in a return to the baseline accuracy.
 
 - Feature Engineering:
-    - (Iteration 3) Created a new feature which compares the ask amount to the average income.
-        - (Iteration 3a) Initially, there was a reduction in performance, however experimented with comparing against `LOWER_INCOME` and returning the previously dropped `LOWER_INCOME` and `INCOME_AMT` columns, which resulted in a return to baseline accuracy. It seemed logical to only drop the `UPPER_INCOME` column, as there was synthetic data added to that column.
-        - (Iteration 3b) Experimented with retaining the `UPPER_INCOME` column as well, which resulted in only a slight decrease in accuracy. Will retain the column as it was used to calculate the `AVG_INCOME` anyway.
-    - (Iteration 4) Created new column by combining `AFFILIATION` with `ORGANIZATION`. This resulted in 73.6% accuracy, still close to the baseline but highest result so far.
-    - (Iteration 5) Created another column by combining `AFFILIATION` with `USE_CASE`.
-    - (Iteration 6) Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding. This resulted in the model achieving 75% accuracy.
+    - __Iteration 3__: Created a new feature which compares the ask amount to the average income.
+        - __Iteration 3a__: Initially, there was a reduction in performance, however experimented with comparing against `LOWER_INCOME` and returning the previously dropped `LOWER_INCOME` and `INCOME_AMT` columns, which resulted in a return to baseline accuracy. It seemed logical to only drop the `UPPER_INCOME` column, as there was synthetic data added to that column.
+        - __Iteration 3b__: Experimented with retaining the `UPPER_INCOME` column as well, which resulted in only a slight decrease in accuracy. Will retain the column as it was used to calculate the `AVG_INCOME` anyway.
+    - __Iteration 4__: Created new column by combining `AFFILIATION` with `ORGANIZATION`. This resulted in 73.6% accuracy, still close to the baseline but highest result so far.
+    - __Iteration 5__: Created another column by combining `AFFILIATION` with `USE_CASE`.
+    - __Iteration 6__: Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding. This resulted in the model achieving 75% accuracy.
 
 - Hyperparameter Tuning:
     - Changed the number of epochs, to as low as `20` up to `200`.
@@ -83,7 +83,9 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
         - Avoided `sigmoid` in the hidden layers, as it would quash the value.
     - Changed the maximum number of neurons. Ultimately settled with a rule of thumb: "The number of hidden neurons should be less than twice the size of the input layer."
 
-- Regularization: Experimented with L1 (Lasso) and L2 (Ridge) regularizations. L1 performed slightly better than L2.
+- Regularization:
+    - Experimented with L1 (Lasso) and L2 (Ridge) regularizations.
+    - L1 performed slightly better than L2.
 
 - Other Pre-Processing (iterations not saved):
     - Experimented with the number of unique values prior to encoding. Maintained a maximum of `6` unique values, trialling values to as low as `6`. Runs were also conducted with different values for different columns (i.e. `APPLICATION_TYPE` with `10` and `CLASSIFICATION` with `8`). No improvements in performance was observed, although it was noted the performance decreases as more columns are removed.
@@ -93,9 +95,11 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
 ## Summary
 Format images in the report so that they display correction
 Summarise the overall results of your model
-|![img_name]()|
+
+
+|![initial_run_accuracy](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_run_accuracy.png)|
 |:---:|
-|image_title|
+|Initial Run|
 
 ## Alternative Solutions
 Describe how you could use a different model to solve the same problem, and explain why you would use that model
