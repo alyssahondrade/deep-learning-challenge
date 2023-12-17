@@ -31,7 +31,14 @@ Answer all 6 questions in the results section
 2. Were you able to achieve the target model performance?
 
 3. What steps did you take in your attempts to increase model performance?
-
+- Data cleaning:
+    - (Iteration 1) Converted the `SPECIAL_CONSIDERATIONS` column to binary integers (`0`/`1`), instead of binary strings (`N`/`Y`).
+    - (Iteration 2) Accounted for missing category in the `INCOME_AMT` column.
+    - Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding.
+    
+__STEPS THAT DID NOT WORK__
+- Added `EIN` back to the feature array. No change in accuracy. Removed it again since no logical reason to use it as a feature.
+- Converting the `INCOME_AMT` column to ordinal encoding and retaining the original column results in a reduction of performance. Dropping the `INCOME_AMT` column results in return to the baseline accuracy.
 
 ## Summary
 Format images in the report so that they display correction
