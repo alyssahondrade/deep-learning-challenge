@@ -6,7 +6,7 @@
     1. [Data Preprocessing]()
     2. [Compiling, Training, and Evaluating the Model]()
 3. [Summary]()
-
+4. [Alternative Solutions]()
 
 ## Goal
 The purpose of the analysis is to develop a Deep Learning Model that can predict whether applicants will be successful if funded by the nonprofit foundation, Alphabet Soup.
@@ -96,10 +96,10 @@ The model was able to achieve `75.7%`, slightly above the required `75%`.
 Format images in the report so that they display correction
 Summarise the overall results of your model
 
-
-|![initial_run_accuracy](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_run_accuracy.png)|
-|:---:|
-|Initial Run|
+The initial model achieved an accuracy of `72.8%`, with the final model achieving an accuracy of `75.7%`.
+|![initial_run_accuracy](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_run_accuracy.png)|![initial_model_archi](https://github.com/alyssahondrade/deep-learning-challenge/blob/main/images/initial_model_architecture.png)|
+|:---:|:---:|
+|Initial Run|Initial Model Architecture| 
 
 ## Alternative Solutions
-Describe how you could use a different model to solve the same problem, and explain why you would use that model
+I would be interested to use ensemble learning to solve the same problem. My initial thought would be to use a Gradient Boosted Tree, given the small number of features available, however, I would need to be careful with overfitting. Otherwise, a Random Forest could also be used, applicable for smaller datasets but more robustness to overfitting. Regardless, the machine learning pipeline would still be applicable: data preprocessing, feature engineering, data splitting, model training, tuning, and evaluation, as demonstrated in the analysis.
