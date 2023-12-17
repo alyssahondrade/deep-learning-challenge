@@ -43,9 +43,12 @@ Answer all 6 questions in the results section
         - (Iteration 3a) Initially, there was a reduction in performance, however experimented with comparing against `LOWER_INCOME` and returning the previously dropped `LOWER_INCOME` and `INCOME_AMT` columns, which resulted in a return to baseline accuracy. It seemed logical to only drop the `UPPER_INCOME` column, as there was synthetic data added to that column.
         - (Iteration 3b) Experimented with retaining the `UPPER_INCOME` column as well, which resulted in only a slight decrease in accuracy. Will retain the column as it was used to calculate the `AVG_INCOME` anyway.
     - (Iteration 4) Created new column by combining `AFFILIATION` with `ORGANIZATION`. This resulted in 73.6% accuracy, still close to the baseline but highest result so far.
-    - (Iteration 5) Created another column by combining `AFFILIATION` with `USE_CASE`. 
-    - Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding.
-    
+    - (Iteration 5) Created another column by combining `AFFILIATION` with `USE_CASE`.
+
+
+
+- Added the `NAME` column back to the feature array, reduced to a maximum of 10 unique values to prevent a blowout when one-hot encoding.
+
 __STEPS THAT DID NOT WORK__
 - Added `EIN` back to the feature array. No change in accuracy. Removed it again since no logical reason to use it as a feature.
   
